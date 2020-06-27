@@ -17,6 +17,8 @@ export default class Home extends React.Component {
       removeInputBtn: true,
       //Is addInputBtn disabled (default : false)
       addInputBtn: false,
+      //Remove Fields button classes
+      removeFieldsBtnClasses: ["removeInput"],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,8 +26,6 @@ export default class Home extends React.Component {
     this.removeInput = this.removeInput.bind(this);
     this.makeMedia = this.makeMedia.bind(this);
   }
-
-  componentDidMount() {}
 
   handleChange(evt) {
     const value = evt.target.value;
@@ -66,7 +66,7 @@ export default class Home extends React.Component {
         input: this.state.input.concat("+"),
         addInputBtn: true,
       });
-      return;
+      //return;
     } else {
       this.setState((prevState) => ({
         addInputBtn: false,
@@ -114,18 +114,28 @@ export default class Home extends React.Component {
       this.setState({
         addInputBtn: false,
         removeInputBtn: true,
+        removeFieldsBtnClasses: this.state.removeFieldsBtnClasses.concat(
+          " disabled"
+        ),
       });
     }
   }
 
   render() {
     let inputs = this.state.input;
+    let removeFieldsBtnClasses = this.state.removeFieldsBtnClasses;
+    let classes = "";
+    removeFieldsBtnClasses.forEach((item) => {
+      console.log(item);
+      classes = classes + " " + item;
+    });
+    console.log(">>>>>>>>>>>>>", removeFieldsBtnClasses);
     return (
       <form className="form" onSubmit={this.handleSubmit}>
         <div className="inputsContainer">
           <button
             disabled={this.state.removeInputBtn}
-            className="removeInput"
+            className={classes}
             onClick={this.removeInput}
           >
             <span>-</span>

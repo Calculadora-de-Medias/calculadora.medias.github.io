@@ -16,6 +16,12 @@
         color: #139e13;
         span {
           font-size: 70px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        &.disabled {
+          opacity: 0.5;
         }
       }
       .removeInput {
@@ -26,6 +32,12 @@
         color: #d21831;
         span {
           font-size: 70px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        &.disabled {
+          opacity: 0.5;
         }
       }
       ul {
